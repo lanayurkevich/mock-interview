@@ -77,7 +77,7 @@ struct InterviewQuestionsView: View {
                 generateQuestions()
             }
             .buttonStyle(.bordered)
-            .disabled(isDisabled)
+            .disabled(isDisabled || isLoading)
             .padding()
             
             if isQuestionsGenerated {
