@@ -37,7 +37,6 @@ struct ContentView: View {
                             .background(Color.blue)
                             .cornerRadius(10)
                     }
-                    .buttonStyle(PlainButtonStyle()) // Use PlainButtonStyle to remove the default button style
                 }
                 .padding(.bottom, 50)
             }
