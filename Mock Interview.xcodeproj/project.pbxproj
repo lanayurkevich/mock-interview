@@ -16,6 +16,8 @@
 		292AA9D42BA88D2300B62DAF /* Mock_InterviewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292AA9D32BA88D2300B62DAF /* Mock_InterviewTests.swift */; };
 		292AA9DE2BA88D2300B62DAF /* Mock_InterviewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292AA9DD2BA88D2300B62DAF /* Mock_InterviewUITests.swift */; };
 		292AA9E02BA88D2300B62DAF /* Mock_InterviewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292AA9DF2BA88D2300B62DAF /* Mock_InterviewUITestsLaunchTests.swift */; };
+		294880182BA9CE04001D145C /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294880172BA9CE04001D145C /* NetworkModel.swift */; };
+		2948801B2BA9CE25001D145C /* OpenAIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2948801A2BA9CE25001D145C /* OpenAIResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		292AA9D92BA88D2300B62DAF /* Mock InterviewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mock InterviewUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		292AA9DD2BA88D2300B62DAF /* Mock_InterviewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock_InterviewUITests.swift; sourceTree = "<group>"; };
 		292AA9DF2BA88D2300B62DAF /* Mock_InterviewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock_InterviewUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		294880172BA9CE04001D145C /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
+		2948801A2BA9CE25001D145C /* OpenAIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,7 @@
 		292AA9BC2BA88D2100B62DAF /* Mock Interview */ = {
 			isa = PBXGroup;
 			children = (
+				294880192BA9CE0F001D145C /* Network */,
 				292AA9BD2BA88D2100B62DAF /* Mock_InterviewApp.swift */,
 				292AA9BF2BA88D2100B62DAF /* ContentView.swift */,
 				292AA9C12BA88D2300B62DAF /* Assets.xcassets */,
@@ -131,6 +136,15 @@
 				292AA9DF2BA88D2300B62DAF /* Mock_InterviewUITestsLaunchTests.swift */,
 			);
 			path = "Mock InterviewUITests";
+			sourceTree = "<group>";
+		};
+		294880192BA9CE0F001D145C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				294880172BA9CE04001D145C /* NetworkModel.swift */,
+				2948801A2BA9CE25001D145C /* OpenAIResponse.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,9 +277,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2948801B2BA9CE25001D145C /* OpenAIResponse.swift in Sources */,
 				292AA9C72BA88D2300B62DAF /* Persistence.swift in Sources */,
 				292AA9CA2BA88D2300B62DAF /* Mock_Interview.xcdatamodeld in Sources */,
 				292AA9C02BA88D2100B62DAF /* ContentView.swift in Sources */,
+				294880182BA9CE04001D145C /* NetworkModel.swift in Sources */,
 				292AA9BE2BA88D2100B62DAF /* Mock_InterviewApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
