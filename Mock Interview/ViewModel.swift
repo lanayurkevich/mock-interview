@@ -19,4 +19,14 @@ enum InterviewState {
 class ViewModel {
     
     var state: InterviewState = .initial
+    
+    func nextStep() {
+        if state == .question1 {
+            state = .question2
+        } else if state == .question2 {
+            state = .question3
+        } else if state == .question3 {
+            state = .feedback
+        }
+    }
 }
