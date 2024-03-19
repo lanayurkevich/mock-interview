@@ -27,10 +27,9 @@ struct ContentView: View {
                 Button(action: {
                     isStartButtonTapped = true
                 }) {
-                    NavigationLink(
-                        destination: InterviewQuestionsView(),
-                        isActive: $isStartButtonTapped
-                    ) {
+                    NavigationLink {
+                        InterviewQuestionsView()
+                    } label: {
                         Text("Start")
                             .font(.title2)
                             .foregroundColor(.white)
