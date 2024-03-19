@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct ContentView: View {
+    
+    @State private var viewModel = ViewModel()
     @State private var isStartButtonTapped = false
     
     var body: some View {
@@ -29,6 +30,7 @@ struct ContentView: View {
                 }) {
                     NavigationLink {
                         InterviewQuestionsView()
+                            .environment(viewModel)
                     } label: {
                         Text("Start")
                             .font(.title2)
@@ -52,6 +54,9 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct InterviewQuestionsView: View {
+    
+    @Environment(ViewModel.self) private var viewModel: ViewModel
+    
     @State private var selectedPosition = ""
     @State private var yearsOfExperience = ""
     @State private var generatedQuestions: [String] = []
@@ -82,14 +87,6 @@ struct InterviewQuestionsView: View {
             .disabled(isDisabled || isLoading)
             .padding()
             
-            if isQuestionsGenerated {
-                Section(header: Text("Generated Questions")) {
-                    ForEach(generatedQuestions, id: \.self) { question in
-                        Text(question)
-                    }
-                }
-            }
-            
             Spacer()
         }
         .padding()
@@ -99,6 +96,16 @@ struct InterviewQuestionsView: View {
         }
         .onChange(of: yearsOfExperience) {
             isDisabled = selectedPosition.isEmpty || yearsOfExperience.isEmpty
+        }
+        .onChange(of: isQuestionsGenerated) {
+            if isQuestionsGenerated {
+                viewModel.state = .question1
+            }
+        }
+        .sheet(isPresented: $isQuestionsGenerated) {
+            QuestionView(question: generatedQuestions[0], dismiss: {
+                isQuestionsGenerated = false
+            })
         }
     }
     

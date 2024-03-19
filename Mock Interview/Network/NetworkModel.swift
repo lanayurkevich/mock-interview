@@ -9,7 +9,7 @@ import Foundation
 
 class NetworkModel {
     
-    private let apiKey = "PRIVATE_KEY"
+    private let apiKey = ""
     private let endpoint = "https://api.openai.com/v1/chat/completions"
     
     public func loadRequest(request: URLRequest, completion: @escaping ([String]) -> Void) {
@@ -25,8 +25,11 @@ class NetworkModel {
             
             do {
                 let response = try JSONDecoder().decode(OpenAIResponse.self, from: data)
+                
+                let message = response.choices.first?.message.content
+                let generatedQuestions: [String] = message?.split(separator: "\n").map { String($0) } ?? []
+                
                 DispatchQueue.main.async {
-                    let generatedQuestions = response.choices.map { $0.message.content }
                     completion(generatedQuestions)
                 }
             } catch {

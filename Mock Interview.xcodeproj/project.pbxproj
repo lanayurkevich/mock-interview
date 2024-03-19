@@ -11,13 +11,13 @@
 		292AA9C02BA88D2100B62DAF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292AA9BF2BA88D2100B62DAF /* ContentView.swift */; };
 		292AA9C22BA88D2300B62DAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 292AA9C12BA88D2300B62DAF /* Assets.xcassets */; };
 		292AA9C52BA88D2300B62DAF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 292AA9C42BA88D2300B62DAF /* Preview Assets.xcassets */; };
-		292AA9C72BA88D2300B62DAF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292AA9C62BA88D2300B62DAF /* Persistence.swift */; };
-		292AA9CA2BA88D2300B62DAF /* Mock_Interview.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 292AA9C82BA88D2300B62DAF /* Mock_Interview.xcdatamodeld */; };
 		292AA9D42BA88D2300B62DAF /* Mock_InterviewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292AA9D32BA88D2300B62DAF /* Mock_InterviewTests.swift */; };
 		292AA9DE2BA88D2300B62DAF /* Mock_InterviewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292AA9DD2BA88D2300B62DAF /* Mock_InterviewUITests.swift */; };
 		292AA9E02BA88D2300B62DAF /* Mock_InterviewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292AA9DF2BA88D2300B62DAF /* Mock_InterviewUITestsLaunchTests.swift */; };
 		294880182BA9CE04001D145C /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294880172BA9CE04001D145C /* NetworkModel.swift */; };
 		2948801B2BA9CE25001D145C /* OpenAIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2948801A2BA9CE25001D145C /* OpenAIResponse.swift */; };
+		2948801D2BA9D32D001D145C /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2948801C2BA9D32D001D145C /* QuestionView.swift */; };
+		2948801F2BA9D364001D145C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2948801E2BA9D364001D145C /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +43,6 @@
 		292AA9BF2BA88D2100B62DAF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		292AA9C12BA88D2300B62DAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		292AA9C42BA88D2300B62DAF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		292AA9C62BA88D2300B62DAF /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		292AA9C92BA88D2300B62DAF /* Mock_Interview.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mock_Interview.xcdatamodel; sourceTree = "<group>"; };
 		292AA9CF2BA88D2300B62DAF /* Mock InterviewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mock InterviewTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		292AA9D32BA88D2300B62DAF /* Mock_InterviewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock_InterviewTests.swift; sourceTree = "<group>"; };
 		292AA9D92BA88D2300B62DAF /* Mock InterviewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mock InterviewUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +50,8 @@
 		292AA9DF2BA88D2300B62DAF /* Mock_InterviewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock_InterviewUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		294880172BA9CE04001D145C /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 		2948801A2BA9CE25001D145C /* OpenAIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponse.swift; sourceTree = "<group>"; };
+		2948801C2BA9D32D001D145C /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
+		2948801E2BA9D364001D145C /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,9 +105,9 @@
 				294880192BA9CE0F001D145C /* Network */,
 				292AA9BD2BA88D2100B62DAF /* Mock_InterviewApp.swift */,
 				292AA9BF2BA88D2100B62DAF /* ContentView.swift */,
+				2948801C2BA9D32D001D145C /* QuestionView.swift */,
+				2948801E2BA9D364001D145C /* ViewModel.swift */,
 				292AA9C12BA88D2300B62DAF /* Assets.xcassets */,
-				292AA9C62BA88D2300B62DAF /* Persistence.swift */,
-				292AA9C82BA88D2300B62DAF /* Mock_Interview.xcdatamodeld */,
 				292AA9C32BA88D2300B62DAF /* Preview Content */,
 			);
 			path = "Mock Interview";
@@ -278,10 +278,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2948801B2BA9CE25001D145C /* OpenAIResponse.swift in Sources */,
-				292AA9C72BA88D2300B62DAF /* Persistence.swift in Sources */,
-				292AA9CA2BA88D2300B62DAF /* Mock_Interview.xcdatamodeld in Sources */,
+				2948801D2BA9D32D001D145C /* QuestionView.swift in Sources */,
 				292AA9C02BA88D2100B62DAF /* ContentView.swift in Sources */,
 				294880182BA9CE04001D145C /* NetworkModel.swift in Sources */,
+				2948801F2BA9D364001D145C /* ViewModel.swift in Sources */,
 				292AA9BE2BA88D2100B62DAF /* Mock_InterviewApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -606,19 +606,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		292AA9C82BA88D2300B62DAF /* Mock_Interview.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				292AA9C92BA88D2300B62DAF /* Mock_Interview.xcdatamodel */,
-			);
-			currentVersion = 292AA9C92BA88D2300B62DAF /* Mock_Interview.xcdatamodel */;
-			path = Mock_Interview.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 292AA9B22BA88D2000B62DAF /* Project object */;
 }
