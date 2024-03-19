@@ -45,12 +45,19 @@ struct ContentView: View {
     }
 }
 
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
 struct InterviewQuestionsView: View {
     @State private var selectedPosition = ""
     @State private var yearsOfExperience = ""
     @State private var generatedQuestions: [String] = []
     @State private var isQuestionsGenerated = false
     @State private var isLoading = false
+    @State private var isDisabled = true
     
     var body: some View {
         VStack {
@@ -66,14 +73,12 @@ struct InterviewQuestionsView: View {
                         .disableAutocorrection(true) // Disable autocorrection
                 }
             }
-            
             Button("Submit") {
                 generateQuestions()
             }
+            .buttonStyle(.bordered)
+            .disabled(isDisabled)
             .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(10)
             
             if isQuestionsGenerated {
                 Section(header: Text("Generated Questions")) {
@@ -87,6 +92,12 @@ struct InterviewQuestionsView: View {
         }
         .padding()
         .navigationTitle("Interview Questions")
+        .onChange(of: selectedPosition) {
+            isDisabled = selectedPosition.isEmpty || yearsOfExperience.isEmpty
+        }
+        .onChange(of: yearsOfExperience) {
+            isDisabled = selectedPosition.isEmpty || yearsOfExperience.isEmpty
+        }
     }
     
     func generateQuestions() {
@@ -155,11 +166,6 @@ struct InterviewQuestionsView: View {
             struct Message: Decodable {
                 let content: String
             }
-        }
-    }
-    struct ContentView_Previews: PreviewProvider {
-        static var previews: some View {
-            ContentView()
         }
     }
     
