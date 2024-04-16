@@ -19,35 +19,51 @@ enum InterviewState {
 class ViewModel {
     
     var state: InterviewState = .initial
-    
-    func nextStep() {
+    var questions: [String] = Array(repeating: "", count: 3)
+    var question: String = ""
+    var answers: [String] = Array(repeating: "", count: 3)
+    var title: String = "Question 1"
+    func nextStep(_ response: String) {
         if state == .question1 {
             state = .question2
+            question = questions[1]
+            answers[0] = response
+            title = "Question 2"
         } else if state == .question2 {
             state = .question3
+            question = questions[2]
+            answers[1] = response
+            title = "Question 3"
         } else if state == .question3 {
+            answers[2] = response
             state = .feedback
         }
     }
     
+    func reset() {
+        state = .question1
+        title = "Question 1"
+        question = questions[0]
+    }
+    
     /// Save 3 responses
-    func saveQuestions(questions: [String]) {
-        UserDefaults.standard.setValue(questions[0], forKey: "question-1")
-        UserDefaults.standard.setValue(questions[1], forKey: "question-2")
-        UserDefaults.standard.setValue(questions[2], forKey: "question-3")
+    func saveAnswers(answers: [String]) {
+        UserDefaults.standard.setValue(answers[0], forKey: "answer-1")
+        UserDefaults.standard.setValue(answers[1], forKey: "answer-2")
+        UserDefaults.standard.setValue(answers[2], forKey: "answer-3")
     }
     
     // Get 3 saved quesitons from user defaults.
-    func readQuestions() -> [String] {
-        guard let question1 = UserDefaults.value(forKey: "question-1") as? String else {
+    func readAnswer() -> [String] {
+        guard let answer1 = UserDefaults.value(forKey: "answer-1") as? String else {
             return []
         }
-        guard let question2 = UserDefaults.value(forKey: "question-2") as? String else {
+        guard let answer2 = UserDefaults.value(forKey: "answer-2") as? String else {
             return []
         }
-        guard let question3 = UserDefaults.value(forKey: "question-3") as? String else {
+        guard let answer3 = UserDefaults.value(forKey: "answer-3") as? String else {
             return []
         }
-        return [question1, question2, question3]
+        return [answer1, answer2, answer3]
     }
 }

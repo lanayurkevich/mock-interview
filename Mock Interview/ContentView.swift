@@ -103,7 +103,7 @@ struct InterviewQuestionsView: View {
             }
         }
         .sheet(isPresented: $isQuestionsGenerated) {
-            QuestionView(question: generatedQuestions[0], dismiss: {
+            QuestionView(dismiss: {
                 isQuestionsGenerated = false
             })
         }
@@ -118,6 +118,8 @@ struct InterviewQuestionsView: View {
         network.loadRequest(request: request) { response in
             DispatchQueue.main.async {
                 self.generatedQuestions = response
+                viewModel.questions = response
+                viewModel.question = response.first!
                 self.isQuestionsGenerated = true
                 isLoading = false
             }

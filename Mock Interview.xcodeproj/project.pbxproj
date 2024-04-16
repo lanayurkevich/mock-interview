@@ -14,6 +14,7 @@
 		292AA9D42BA88D2300B62DAF /* Mock_InterviewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292AA9D32BA88D2300B62DAF /* Mock_InterviewTests.swift */; };
 		292AA9DE2BA88D2300B62DAF /* Mock_InterviewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292AA9DD2BA88D2300B62DAF /* Mock_InterviewUITests.swift */; };
 		292AA9E02BA88D2300B62DAF /* Mock_InterviewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292AA9DF2BA88D2300B62DAF /* Mock_InterviewUITestsLaunchTests.swift */; };
+		292DEC8C2BCEB26200C3A1FF /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292DEC8B2BCEB26200C3A1FF /* FeedbackView.swift */; };
 		294880182BA9CE04001D145C /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294880172BA9CE04001D145C /* NetworkModel.swift */; };
 		2948801B2BA9CE25001D145C /* OpenAIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2948801A2BA9CE25001D145C /* OpenAIResponse.swift */; };
 		2948801D2BA9D32D001D145C /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2948801C2BA9D32D001D145C /* QuestionView.swift */; };
@@ -48,6 +49,7 @@
 		292AA9D92BA88D2300B62DAF /* Mock InterviewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mock InterviewUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		292AA9DD2BA88D2300B62DAF /* Mock_InterviewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock_InterviewUITests.swift; sourceTree = "<group>"; };
 		292AA9DF2BA88D2300B62DAF /* Mock_InterviewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock_InterviewUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		292DEC8B2BCEB26200C3A1FF /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		294880172BA9CE04001D145C /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 		2948801A2BA9CE25001D145C /* OpenAIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponse.swift; sourceTree = "<group>"; };
 		2948801C2BA9D32D001D145C /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				2948801E2BA9D364001D145C /* ViewModel.swift */,
 				292AA9C12BA88D2300B62DAF /* Assets.xcassets */,
 				292AA9C32BA88D2300B62DAF /* Preview Content */,
+				292DEC8B2BCEB26200C3A1FF /* FeedbackView.swift */,
 			);
 			path = "Mock Interview";
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2948801B2BA9CE25001D145C /* OpenAIResponse.swift in Sources */,
+				292DEC8C2BCEB26200C3A1FF /* FeedbackView.swift in Sources */,
 				2948801D2BA9D32D001D145C /* QuestionView.swift in Sources */,
 				292AA9C02BA88D2100B62DAF /* ContentView.swift in Sources */,
 				294880182BA9CE04001D145C /* NetworkModel.swift in Sources */,
