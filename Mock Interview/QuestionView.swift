@@ -24,7 +24,7 @@ struct QuestionView: View {
                     FeedbackView()
                 }
                 else {
-                    
+                    VStack {
                     Text(viewModel.question)
                         .padding()
                     
@@ -32,9 +32,10 @@ struct QuestionView: View {
                         // Handle user's response here if needed
                     })
                     .padding()
-                    Button("Next") {
-                        viewModel.nextStep(response)
-                        response = ""
+                        Button("Next") {
+                            viewModel.nextStep(response)
+                            response = ""
+                        }
                     }
                 }
             }

@@ -12,33 +12,35 @@ class NetworkModel {
     private let apiKey = ""
     private let endpoint = "https://api.openai.com/v1/chat/completions"
     
-    public func loadRequest(request: URLRequest, completion: @escaping ([String]) -> Void) {
-        URLSession.shared.dataTask(with: request) { data, response, error in
+    func loadRequest(request: URLRequest, completion: @escaping ([String]) -> Void) {
+        URLSession.shared.dataTask(with: request) { [self] data, response, error in
             
             guard let data = data else {
                 print("No data received: \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
             
-            let responseString = String(data: data, encoding: .utf8)
-            print("Response data: \(responseString ?? "Unable to decode response data")") // Print response data
-            
             do {
                 let response = try JSONDecoder().decode(OpenAIResponse.self, from: data)
                 
-                let message = response.choices.first?.message.content
-                let generatedQuestions: [String] = message?.split(separator: "\n").map { String($0) } ?? []
+                guard let message = response.choices.first?.message.content else {
+                    print("No message content found in the response")
+                    completion([])
+                    return
+                }
+                
+                let generatedQuestions = self.parseQuestions(from: message)
                 
                 DispatchQueue.main.async {
                     completion(generatedQuestions)
                 }
             } catch {
                 print("Error decoding JSON: \(error)")
+                completion([])
             }
         }
         .resume()
     }
-    
     func makeQuestionsRequest(selectedPosition: String, yearsOfExperience: String) -> URLRequest? {
         guard let url = URL(string: endpoint) else {
             print("Invalid URL")
@@ -70,4 +72,19 @@ class NetworkModel {
         return request
     }
     
+    private func parseQuestions(from message: String) -> [String] {
+        var questions: [String] = []
+        let lines = message.split(separator: "\n").map { String($0) }
+        
+        for line in lines {
+            if line.contains("?") {
+                questions.append(line)
+            } else if var lastQuestion = questions.last {
+                lastQuestion.append(contentsOf: " " + line)
+                questions[questions.count - 1] = lastQuestion
+            }
+        }
+        
+        return questions
+    }
 }
