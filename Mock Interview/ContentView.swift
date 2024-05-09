@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Mock Interview
-//
-//  Created by Svetlana Yurkevich on 18/03/2024.
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -15,14 +8,34 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Mock Interview")
-                    .font(.title)
-                    .padding(.top, 50)
-                
                 Text("Mock Interview for Any Position")
-                    .font(.headline)
-                    .padding(.top, 10)
-                
+                    .font(.subheadline)
+                    .padding()
+                ScrollView {
+                    Text("""
+Consent for Data Usage
+
+Welcome to the Mock Interview app! To provide you with personalized feedback and enhance your interview experience, we utilize the OpenAI API, which includes features powered by Chat GPT. Before proceeding, we require your consent to collect and process your responses during the interview sessions.
+
+By agreeing to this consent, you understand and agree to the following:
+
+Data Usage: Your interview responses, including text input, voice recordings, and video recordings, may be collected and processed by the OpenAI API to generate personalized feedback.
+Anonymity: Your responses will be anonymized and used solely for the purpose of improving the functionality and performance of the Mock Interview app. Your personal information will not be shared with any third parties.
+Data Security: We prioritize the security and confidentiality of your data. We implement robust measures to safeguard your information against unauthorized access, disclosure, or misuse.
+Opt-out Option: You have the option to opt-out of data collection and processing at any time. Simply navigate to the app settings and adjust your preferences accordingly.
+By agreeing to this consent, you acknowledge that you have read and understood the terms outlined above, and you consent to the collection and processing of your interview responses by the OpenAI API.
+
+If you have any questions or concerns regarding data usage and privacy, please contact us at [lana.yurkevich@icloud.com].
+
+Thank you for your cooperation.
+""")
+                }
+                .border(.gray)
+                .frame(height: 200)
+                Image(.mockInterviewLogo)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 300)
                 Spacer()
                 
                 Button(action: {
@@ -42,14 +55,10 @@ struct ContentView: View {
                 }
                 .padding(.bottom, 50)
             }
+            .navigationTitle("Mock Interview")
             .padding()
+            
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }
 
@@ -63,7 +72,10 @@ struct InterviewQuestionsView: View {
     @State private var isQuestionsGenerated = false
     @State private var isLoading = false
     @State private var isDisabled = true
-    
+
+    @State private var errorMessage = ""
+    @State private var showingAlert = false
+
     private let network = NetworkModel()
     
     var body: some View {
@@ -89,8 +101,8 @@ struct InterviewQuestionsView: View {
             
             Spacer()
         }
-        .padding()
         .navigationTitle("Interview Questions")
+        .navigationBarTitleDisplayMode(.large)
         .onChange(of: selectedPosition) {
             isDisabled = selectedPosition.isEmpty || yearsOfExperience.isEmpty
         }
@@ -103,9 +115,12 @@ struct InterviewQuestionsView: View {
             }
         }
         .sheet(isPresented: $isQuestionsGenerated) {
-            QuestionView(dismiss: {
+            QuestionView(yearsOfExperience: yearsOfExperience, selectedPosition: selectedPosition) {
                 isQuestionsGenerated = false
-            })
+            }
+        }
+        .alert(errorMessage, isPresented: $showingAlert) {
+            Button("OK", role: .cancel) { }
         }
     }
     
@@ -115,14 +130,32 @@ struct InterviewQuestionsView: View {
         guard let request = network.makeQuestionsRequest(selectedPosition: selectedPosition, yearsOfExperience: yearsOfExperience) else {
             return
         }
-        network.loadRequest(request: request) { response in
+        network.fetchQuestions(request: request) { response in
+
+            guard response.count == 4 else {
+                errorMessage = "Bad response from Chat GPT. Sorry, try again."
+                showingAlert = true
+                isLoading = false
+                return
+            }
+
             DispatchQueue.main.async {
                 self.generatedQuestions = response
                 viewModel.questions = response
-                viewModel.question = response.first!
+                viewModel.question = response.first ?? "No Reponse"
                 self.isQuestionsGenerated = true
                 isLoading = false
             }
         }
     }
+}
+
+
+#Preview {
+    ContentView()
+}
+
+#Preview {
+    QuestionView(yearsOfExperience: "ten", selectedPosition: "iOS dev", dismiss: {})
+        .environment(ViewModel(state: .question1))
 }

@@ -12,12 +12,11 @@ enum InterviewState {
     case question1
     case question2
     case question3
-    case feedback
+    case validationAndFeedback
 }
 
 @Observable
 class ViewModel {
-    
     var state: InterviewState = .initial
     var questions: [String] = Array(repeating: "", count: 3)
     var question: String = ""
@@ -36,7 +35,8 @@ class ViewModel {
             title = "Question 3"
         } else if state == .question3 {
             answers[2] = response
-            state = .feedback
+            state = .validationAndFeedback
+            title = "Check your answers"
         }
     }
     
@@ -45,25 +45,8 @@ class ViewModel {
         title = "Question 1"
         question = questions[0]
     }
-    
-    /// Save 3 responses
-    func saveAnswers(answers: [String]) {
-        UserDefaults.standard.setValue(answers[0], forKey: "answer-1")
-        UserDefaults.standard.setValue(answers[1], forKey: "answer-2")
-        UserDefaults.standard.setValue(answers[2], forKey: "answer-3")
-    }
-    
-    // Get 3 saved quesitons from user defaults.
-    func readAnswer() -> [String] {
-        guard let answer1 = UserDefaults.value(forKey: "answer-1") as? String else {
-            return []
-        }
-        guard let answer2 = UserDefaults.value(forKey: "answer-2") as? String else {
-            return []
-        }
-        guard let answer3 = UserDefaults.value(forKey: "answer-3") as? String else {
-            return []
-        }
-        return [answer1, answer2, answer3]
+
+    init(questions: [String] = ["","",""], state: InterviewState = .initial) {
+        self.question = question
     }
 }
