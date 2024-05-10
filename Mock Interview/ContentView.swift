@@ -124,9 +124,10 @@ struct InterviewQuestionsView: View {
             }
         }
         .sheet(isPresented: $isQuestionsGenerated) {
-            QuestionView(yearsOfExperience: yearsOfExperience, selectedPosition: selectedPosition) {
+            QuestionView(yearsOfExperience: yearsOfExperience, selectedPosition: selectedPosition, dismiss: {
                 isQuestionsGenerated = false
-            }
+                viewModel.reset()
+            })
         }
         .alert(errorMessage, isPresented: $showingAlert) {
             Button("OK", role: .cancel) { }
