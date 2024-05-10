@@ -15,6 +15,7 @@ struct FeedbackView: View {
     @Environment(ViewModel.self) private var viewModel: ViewModel
     @State private var finalFeedback: String = "Loading..."
     @State private var showFeedback = false
+    @State private var isLoading = true
 
     private let network = NetworkModel()
 
@@ -23,6 +24,12 @@ struct FeedbackView: View {
             if showFeedback {
                 Text(finalFeedback)
                     .padding()
+                if isLoading {
+                    Image(.sandClock)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 150)
+                }
             } else {
                 VStack(alignment: .leading) {
                     Group {
@@ -66,6 +73,7 @@ struct FeedbackView: View {
             DispatchQueue.main.async {
                 print("FEEDBACK \(response)")
                 finalFeedback = response
+                isLoading = false
             }
         }
     }

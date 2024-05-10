@@ -100,6 +100,10 @@ struct InterviewQuestionsView: View {
                         .keyboardType(.numberPad)
                         .disableAutocorrection(true) // Disable autocorrection
                 }
+                Image(.CV)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 300)
             }
             Button("Submit") {
                 generateQuestions()

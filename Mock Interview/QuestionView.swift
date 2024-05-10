@@ -38,7 +38,6 @@ struct QuestionView: View {
                         .padding()
 
                         Button("Next") {
-//                            print("save \(response)")
                             saveResponse()
                             viewModel.nextStep(userResponse: response)
                             response = ""
@@ -51,7 +50,10 @@ struct QuestionView: View {
             .navigationTitle(viewModel.title)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") { dismiss() }
+                    Button("Done") {
+                        resetCache()
+                        dismiss()
+                    }
                 }
             }
             .onAppear() {
@@ -97,6 +99,11 @@ struct QuestionView: View {
             break
         }
     }
-
+    
+    private func resetCache() {
+        cacheResponse1 = ""
+        cacheResponse2 = ""
+        cacheResponse3 = ""
+    }
 
 }
