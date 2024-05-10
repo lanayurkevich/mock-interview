@@ -30,7 +30,7 @@ struct QuestionView: View {
                     FeedbackView(yearsOfExperience: yearsOfExperience, selectedPosition: selectedPosition)
                 } else {
                     VStack {
-                        Text(viewModel.question)
+                        Text(viewModel.printedQuestion)
                             .padding()
                         TextEditor(text: $response)
                             .frame(height: 200)
@@ -40,7 +40,7 @@ struct QuestionView: View {
                         Button("Next") {
 //                            print("save \(response)")
                             saveResponse()
-                            viewModel.nextStep(response)
+                            viewModel.nextStep(userResponse: response)
                             response = ""
                         }
                         .buttonStyle(.bordered)

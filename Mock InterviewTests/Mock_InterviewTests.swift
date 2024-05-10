@@ -10,8 +10,7 @@ import XCTest
 
 final class Mock_InterviewTests: XCTestCase {
     
-    var subject = ViewModel()
-    static let mockQuestions = ["Question 1", "Question 2", "Question 3"]
+    var subject = ViewModel() // subject of what we aim to test
 
     func testViewModelStateChanges() {
         let answer1 = "User response to answer 1"
@@ -22,13 +21,13 @@ final class Mock_InterviewTests: XCTestCase {
         subject.state = .question1
         XCTAssertEqual(subject.state, .question1)
 
-        subject.nextStep(answer1)
+        subject.nextStep(userResponse: answer1)
         XCTAssertEqual(subject.state, .question2)
 
-        subject.nextStep(answer2)
+        subject.nextStep(userResponse: answer2)
         XCTAssertEqual(subject.state, .question3)
 
-        subject.nextStep(answer3)
+        subject.nextStep(userResponse: answer3)
         XCTAssertEqual(subject.state, .validationAndFeedback)
 
         XCTAssertEqual(subject.answers, [answer1, answer2, answer3])

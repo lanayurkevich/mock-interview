@@ -18,31 +18,31 @@ enum InterviewState {
 @Observable
 class ViewModel {
     var state: InterviewState = .initial
-    var questions: [String] = Array(repeating: "", count: 3)
-    var question: String = ""
-    var answers: [String] = Array(repeating: "", count: 3)
+    var questions = ["", "", ""]
+    var printedQuestion: String = ""
+    var answers: [String] = ["", "", ""]
     var title: String = "Question 1"
-    func nextStep(_ response: String) {
+    func nextStep(userResponse: String) {
         if state == .question1 {
             state = .question2
-            question = questions[1]
-            answers[0] = response
+            printedQuestion = questions[1]
+            answers[0] = userResponse
             title = "Question 2"
         } else if state == .question2 {
             state = .question3
-            question = questions[2]
-            answers[1] = response
+            printedQuestion = questions[2]
+            answers[1] = userResponse
             title = "Question 3"
         } else if state == .question3 {
-            answers[2] = response
+            answers[2] = userResponse
             state = .validationAndFeedback
             title = "Check your answers"
         }
     }
-    
+    //start over after checking answers
     func reset() {
         state = .question1
         title = "Question 1"
-        question = questions[0]
+        printedQuestion = questions[0]
     }
 }

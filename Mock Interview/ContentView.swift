@@ -151,7 +151,7 @@ struct InterviewQuestionsView: View {
             DispatchQueue.main.async {
                 self.generatedQuestions = response
                 viewModel.questions = response
-                viewModel.question = response.first ?? "No Reponse"
+                viewModel.printedQuestion = response.first ?? "No Reponse"
                 self.isQuestionsGenerated = true
                 isLoading = false
             }
