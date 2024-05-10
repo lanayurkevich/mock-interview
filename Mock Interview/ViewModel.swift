@@ -45,8 +45,4 @@ class ViewModel {
         title = "Question 1"
         question = questions[0]
     }
-
-    init(questions: [String] = ["","",""], state: InterviewState = .initial) {
-        self.question = question
-    }
 }

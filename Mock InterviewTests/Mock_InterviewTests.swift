@@ -9,28 +9,29 @@ import XCTest
 @testable import Mock_Interview
 
 final class Mock_InterviewTests: XCTestCase {
+    
+    var subject = ViewModel()
+    static let mockQuestions = ["Question 1", "Question 2", "Question 3"]
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    func testViewModelStateChanges() {
+        let answer1 = "User response to answer 1"
+        let answer2 = "User response to answer 2"
+        let answer3 = "User response to answer 3"
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+        // Change state to question 1.
+        subject.state = .question1
+        XCTAssertEqual(subject.state, .question1)
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+        subject.nextStep(answer1)
+        XCTAssertEqual(subject.state, .question2)
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        subject.nextStep(answer2)
+        XCTAssertEqual(subject.state, .question3)
+
+        subject.nextStep(answer3)
+        XCTAssertEqual(subject.state, .validationAndFeedback)
+
+        XCTAssertEqual(subject.answers, [answer1, answer2, answer3])
     }
 
 }

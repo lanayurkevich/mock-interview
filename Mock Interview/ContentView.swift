@@ -158,13 +158,3 @@ struct InterviewQuestionsView: View {
         }
     }
 }
-
-
-#Preview {
-    ContentView()
-}
-
-#Preview {
-    QuestionView(yearsOfExperience: "ten", selectedPosition: "iOS dev", dismiss: {})
-        .environment(ViewModel(state: .question1))
-}

@@ -100,8 +100,3 @@ struct QuestionView: View {
 
 
 }
-
-#Preview {
-    QuestionView(yearsOfExperience: "two", selectedPosition: "iOS dev", dismiss: {})
-        .environment(ViewModel(questions: ["Qestion one?", "", ""]))
-}
