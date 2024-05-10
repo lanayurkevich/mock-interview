@@ -4,6 +4,8 @@ struct ContentView: View {
     
     @State private var viewModel = ViewModel()
     @State private var isStartButtonTapped = false
+    @State private var isConsentAccepted = false
+    @State private var showAlert = false
     
     var body: some View {
         NavigationView {
@@ -11,53 +13,60 @@ struct ContentView: View {
                 Text("Mock Interview for Any Position")
                     .font(.subheadline)
                     .padding()
-                ScrollView {
-                    Text("""
-Consent for Data Usage
-
-Welcome to the Mock Interview app! To provide you with personalized feedback and enhance your interview experience, we utilize the OpenAI API, which includes features powered by Chat GPT. Before proceeding, we require your consent to collect and process your responses during the interview sessions.
-
-By agreeing to this consent, you understand and agree to the following:
-
-Data Usage: Your interview responses, including text input, voice recordings, and video recordings, may be collected and processed by the OpenAI API to generate personalized feedback.
-Anonymity: Your responses will be anonymized and used solely for the purpose of improving the functionality and performance of the Mock Interview app. Your personal information will not be shared with any third parties.
-Data Security: We prioritize the security and confidentiality of your data. We implement robust measures to safeguard your information against unauthorized access, disclosure, or misuse.
-Opt-out Option: You have the option to opt-out of data collection and processing at any time. Simply navigate to the app settings and adjust your preferences accordingly.
-By agreeing to this consent, you acknowledge that you have read and understood the terms outlined above, and you consent to the collection and processing of your interview responses by the OpenAI API.
-
-If you have any questions or concerns regarding data usage and privacy, please contact us at [lana.yurkevich@icloud.com].
-
-Thank you for your cooperation.
-""")
-                }
-                .border(.gray)
-                .frame(height: 200)
+                
                 Image(.mockInterviewLogo)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 300)
+                
                 Spacer()
                 
                 Button(action: {
-                    isStartButtonTapped = true
+                    showAlert = true
                 }) {
-                    NavigationLink {
-                        InterviewQuestionsView()
-                            .environment(viewModel)
-                    } label: {
-                        Text("Start")
-                            .font(.title2)
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                    }
+                    Text("Start")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
                 }
                 .padding(.bottom, 50)
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("Consent for Data Usage"),
+                        message: Text("""
+                            Welcome to the Mock Interview app! To provide you with personalized feedback and enhance your interview experience, we utilize the OpenAI API, which includes features powered by Chat GPT. Before proceeding, we require your consent to collect and process your responses during the interview sessions.
+
+                            By agreeing to this consent, you understand and agree to the following:
+
+                            • Data Usage: Your interview responses, including text input, voice recordings, and video recordings, may be collected and processed by the OpenAI API to generate personalized feedback.
+                            • Anonymity: Your responses will be anonymized and used solely for the purpose of improving the functionality and performance of the Mock Interview app. Your personal information will not be shared with any third parties.
+                            • Data Security: We prioritize the security and confidentiality of your data. We implement robust measures to safeguard your information against unauthorized access, disclosure, or misuse.
+                            • Opt-out Option: You have the option to opt-out of data collection and processing at any time. Simply navigate to the app settings and adjust your preferences accordingly.
+
+                            By agreeing to this consent, you acknowledge that you have read and understood the terms outlined above, and you consent to the collection and processing of your interview responses by the OpenAI API.
+
+                            If you have any questions or concerns regarding data usage and privacy, please contact us at [lana.yurkevich@icloud.com].
+
+                            Thank you for your cooperation.
+                        """),
+                        primaryButton: .default(Text("Agree"), action: {
+                            isConsentAccepted = true
+                        }),
+                        secondaryButton: .cancel(Text("Cancel"))
+                    )
+                }
             }
             .navigationTitle("Mock Interview")
             .padding()
-            
+            .background(
+                NavigationLink(
+                    destination: isConsentAccepted ? AnyView(InterviewQuestionsView().environment(viewModel)) : AnyView(EmptyView()),
+                    isActive: $isConsentAccepted,
+                    label: { EmptyView() }
+                )
+            )
         }
     }
 }
