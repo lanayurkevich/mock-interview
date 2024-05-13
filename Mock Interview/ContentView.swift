@@ -148,6 +148,7 @@ struct InterviewQuestionsView: View {
 
             guard response.count == 4 else {
                 errorMessage = "Bad response from Chat GPT. Sorry, try again."
+                print("RESPONSE: \(response)")
                 showingAlert = true
                 isLoading = false
                 return
